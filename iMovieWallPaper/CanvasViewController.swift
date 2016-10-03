@@ -109,15 +109,39 @@ class HSBColorPicker : UIView {
     }
 }
 
+class CanvasView: UIView {
+    
+    
+    override init(frame: CGRect) {
+        let HDRatio: CGFloat = 16/9
+        var HDframe: CGRect
+        if 1080.0 / frame.width * frame.height > 1920.0 {
+            HDframe = CGRect(x: 0, y: 0, width: frame.height / HDRatio , height: frame.height)
+        } else {
+            HDframe = CGRect(x: 0, y: 0, width: frame.width , height: HDRatio * frame.width)
+        }
+        
+//        super.init(frame: HDframe)
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class CanvasViewController: UIViewController, HSBColorPickerDelegate {
 
     var colorPicker: HSBColorPicker?
+    var colorCanvasView: CanvasView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         loadColorPicker()
         loadButton()
+        loadColorCanvasView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -127,6 +151,14 @@ class CanvasViewController: UIViewController, HSBColorPickerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func loadColorCanvasView() {
+        colorCanvasView = CanvasView()
+        colorCanvasView?.backgroundColor = UIColor.black
+        view.addSubview(colorCanvasView!)
+        view.bringSubview(toFront: colorCanvasView!)
+//        colorCanvasView.
     }
     
     func loadColorPicker() {
@@ -163,7 +195,10 @@ class CanvasViewController: UIViewController, HSBColorPickerDelegate {
     }
 
     func HSBColorColorPickerTouched(sender:HSBColorPicker, color:UIColor, point:CGPoint, state:UIGestureRecognizerState) {
-        self.view.backgroundColor = color
+//        self.view.backgroundColor = color
+//        colorPicker!.removeFromSuperview()
+        GeneralHelper.log("change color")
+        colorCanvasView!.backgroundColor = color
     }
     
     func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
@@ -181,7 +216,7 @@ class CanvasViewController: UIViewController, HSBColorPickerDelegate {
     
     func takeScreenShot() {
         let screenShot = UIImage(view: view)
-//        let data = UIImagePNGRepresentation(screenShot)
+        let data = UIImagePNGRepresentation(screenShot)
 //        let documentsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         
         UIImageWriteToSavedPhotosAlbum(screenShot, self, #selector(image), nil)
@@ -197,7 +232,10 @@ class CanvasViewController: UIViewController, HSBColorPickerDelegate {
 
 extension UIImage {
     convenience init(view: UIView) {
-        UIGraphicsBeginImageContext(view.frame.size)
+        let scale = UIScreen.main.scale
+        view.frame.width
+        GeneralHelper.log("width: \(view.frame.width)\t height: \(view.frame.height)\t scale: \(scale)")
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, true, 00.0)
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
