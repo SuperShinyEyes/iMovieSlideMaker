@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		591692261DA2ABA8005A158E /* GeneralHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591692251DA2ABA8005A158E /* GeneralHelper.swift */; };
 		5930DA2F1DA2A3080060E454 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930DA2E1DA2A3080060E454 /* AppDelegate.swift */; };
-		5930DA311DA2A3080060E454 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930DA301DA2A3080060E454 /* ViewController.swift */; };
+		5930DA311DA2A3080060E454 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930DA301DA2A3080060E454 /* CanvasViewController.swift */; };
 		5930DA341DA2A3080060E454 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5930DA321DA2A3080060E454 /* Main.storyboard */; };
 		5930DA361DA2A3080060E454 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5930DA351DA2A3080060E454 /* Assets.xcassets */; };
 		5930DA391DA2A3080060E454 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5930DA371DA2A3080060E454 /* LaunchScreen.storyboard */; };
@@ -34,9 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		591692251DA2ABA8005A158E /* GeneralHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeneralHelper.swift; path = CODE/GeneralHelper.swift; sourceTree = "<group>"; };
 		5930DA2B1DA2A3080060E454 /* iMovieWallPaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMovieWallPaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5930DA2E1DA2A3080060E454 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5930DA301DA2A3080060E454 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5930DA301DA2A3080060E454 /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		5930DA331DA2A3080060E454 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5930DA351DA2A3080060E454 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5930DA381DA2A3080060E454 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -97,12 +99,10 @@
 		5930DA2D1DA2A3080060E454 /* iMovieWallPaper */ = {
 			isa = PBXGroup;
 			children = (
-				5930DA2E1DA2A3080060E454 /* AppDelegate.swift */,
-				5930DA301DA2A3080060E454 /* ViewController.swift */,
-				5930DA321DA2A3080060E454 /* Main.storyboard */,
+				5930DA5C1DA2A3AC0060E454 /* Supporting Files */,
+				5930DA301DA2A3080060E454 /* CanvasViewController.swift */,
+				591692251DA2ABA8005A158E /* GeneralHelper.swift */,
 				5930DA351DA2A3080060E454 /* Assets.xcassets */,
-				5930DA371DA2A3080060E454 /* LaunchScreen.storyboard */,
-				5930DA3A1DA2A3080060E454 /* Info.plist */,
 			);
 			path = iMovieWallPaper;
 			sourceTree = "<group>";
@@ -123,6 +123,17 @@
 				5930DA501DA2A3080060E454 /* Info.plist */,
 			);
 			path = iMovieWallPaperUITests;
+			sourceTree = "<group>";
+		};
+		5930DA5C1DA2A3AC0060E454 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5930DA2E1DA2A3080060E454 /* AppDelegate.swift */,
+				5930DA321DA2A3080060E454 /* Main.storyboard */,
+				5930DA371DA2A3080060E454 /* LaunchScreen.storyboard */,
+				5930DA3A1DA2A3080060E454 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +273,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5930DA311DA2A3080060E454 /* ViewController.swift in Sources */,
+				5930DA311DA2A3080060E454 /* CanvasViewController.swift in Sources */,
 				5930DA2F1DA2A3080060E454 /* AppDelegate.swift in Sources */,
+				591692261DA2ABA8005A158E /* GeneralHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +526,7 @@
 				5930DA551DA2A3080060E454 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5930DA561DA2A3080060E454 /* Build configuration list for PBXNativeTarget "iMovieWallPaperTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +535,7 @@
 				5930DA581DA2A3080060E454 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5930DA591DA2A3080060E454 /* Build configuration list for PBXNativeTarget "iMovieWallPaperUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +544,7 @@
 				5930DA5B1DA2A3080060E454 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
