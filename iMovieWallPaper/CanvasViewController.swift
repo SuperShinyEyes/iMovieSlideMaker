@@ -15,7 +15,8 @@ protocol HSBColorPickerDelegate : NSObjectProtocol {
 @IBDesignable
 class HSBColorPicker : UIView {
     /*
-     http://stackoverflow.com/questions/27208386/simple-swift-color-picker-popover-ios
+     This: http://stackoverflow.com/questions/27208386/simple-swift-color-picker-popover-ios
+     Other: https://github.com/Christian1313/iOS_Swift_ColorPicker
      */
     
     weak internal var delegate: HSBColorPickerDelegate?
@@ -116,6 +117,11 @@ class CanvasViewController: UIViewController, HSBColorPickerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         loadColorPicker()
+        loadButton()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        GeneralHelper.log("Width: \(view.bounds.width)\t Height: \(view.bounds.height)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -142,11 +148,59 @@ class CanvasViewController: UIViewController, HSBColorPickerDelegate {
         } else {
             print(">>> FAIL")
         }
-        
+    }
+    
+    func loadButton() {
+        let width = view.bounds.width * 0.3
+        let height = view.bounds.height * 0.1
+        let frame = CGRect(origin:  CGPoint(x: (view.bounds.width - width) / 2, y: view.bounds.height - height * 2),
+                           size: CGSize(width: width, height: height))
+        let button = UIButton(frame: frame)
+        button.setTitle("Save", for: .normal)
+        button.addTarget(self, action: #selector(takeScreenShot), for: .touchUpInside)
+        button.backgroundColor = UIColor.blue
+        view.addSubview(button)
     }
 
     func HSBColorColorPickerTouched(sender:HSBColorPicker, color:UIColor, point:CGPoint, state:UIGestureRecognizerState) {
         self.view.backgroundColor = color
     }
+    
+    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
+    }
+    
+    func takeScreenShot() {
+        let screenShot = UIImage(view: view)
+//        let data = UIImagePNGRepresentation(screenShot)
+//        let documentsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        
+        UIImageWriteToSavedPhotosAlbum(screenShot, self, #selector(image), nil)
+//        let writePath = NSURL(fileURLWithPath: documentsDir).appendingPathComponent("myimage.png")
+//        do {
+//            try data!.write(to: writePath!, options: .atomic)
+//        } catch let error as NSError {
+//            GeneralHelper.log(error.localizedDescription)
+//        }
+
+    }
 }
 
+extension UIImage {
+    convenience init(view: UIView) {
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.init(cgImage: image!.cgImage!)
+    }
+}
