@@ -232,24 +232,33 @@ class CanvasViewController: UIViewController, HSBColorPickerDelegate {
     }
 }
 
-struct AspectRatio {
-    struct HD {
-        static let long: CGFloat = 1920
-        static let short: CGFloat = 1080
+
+enum AspectRatio {
+    case HD(CGSize)
+    case FullHD(CGSize)
+    case UHD4K(CGSize)
+    
+    var scale: CGFloat {
+        get {
+            switch self {
+            case .HD(let size):
+                return 720 / size.width
+            case .FullHD(let size):
+                return 1080 / size.width
+            case .UHD4K(let size):
+                return 2160 / size.width
+            }
+        }
     }
+    
 }
-//
-//enum Scale: CGFloat {
-//    case HD(CGFloat)
-//    
-////    var scale
-//    
-//}
+
 
 extension UIImage {
     convenience init(view: UIView) {
-        
-        let scale = AspectRatio.HD.short / view.frame.width
+
+//        let scale = AspectRatio.HD.short / view.frame.width
+        let scale = AspectRatio.HD(view.frame.size).scale
         GeneralHelper.log("width: \(view.frame.width)\t height: \(view.frame.height)\t scale: \(scale) \nwidth: \(view.frame.width * scale)\t height: \(view.frame.height * scale)")
         
         UIGraphicsBeginImageContextWithOptions(view.frame.size, true, scale)
