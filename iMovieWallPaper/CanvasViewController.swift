@@ -116,13 +116,15 @@ class CanvasView: UIView {
         let HDRatio: CGFloat = 16/9
         var HDframe: CGRect
         if 1080.0 / frame.width * frame.height > 1920.0 {
+            GeneralHelper.log("If")
             HDframe = CGRect(x: 0, y: 0, width: frame.height / HDRatio , height: frame.height)
         } else {
+            GeneralHelper.log("else: \(1080.0 / frame.width * frame.height == 1920.0)")
             HDframe = CGRect(x: 0, y: 0, width: frame.width , height: HDRatio * frame.width)
         }
         
-//        super.init(frame: HDframe)
-        super.init(frame: frame)
+        super.init(frame: HDframe)
+//        super.init(frame: frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -138,10 +140,10 @@ class CanvasViewController: UIViewController, HSBColorPickerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        loadColorCanvasView()
         loadColorPicker()
         loadButton()
-        loadColorCanvasView()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -154,10 +156,10 @@ class CanvasViewController: UIViewController, HSBColorPickerDelegate {
     }
     
     func loadColorCanvasView() {
-        colorCanvasView = CanvasView()
+        colorCanvasView = CanvasView(frame: view.bounds)
         colorCanvasView?.backgroundColor = UIColor.black
         view.addSubview(colorCanvasView!)
-        view.bringSubview(toFront: colorCanvasView!)
+//        view.bringSubview(toFront: colorCanvasView!)
 //        colorCanvasView.
     }
     
@@ -215,7 +217,7 @@ class CanvasViewController: UIViewController, HSBColorPickerDelegate {
     }
     
     func takeScreenShot() {
-        let screenShot = UIImage(view: view)
+        let screenShot = UIImage(view: colorCanvasView!)
         let data = UIImagePNGRepresentation(screenShot)
 //        let documentsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         
@@ -230,12 +232,27 @@ class CanvasViewController: UIViewController, HSBColorPickerDelegate {
     }
 }
 
+struct AspectRatio {
+    struct HD {
+        static let long: CGFloat = 1920
+        static let short: CGFloat = 1080
+    }
+}
+//
+//enum Scale: CGFloat {
+//    case HD(CGFloat)
+//    
+////    var scale
+//    
+//}
+
 extension UIImage {
     convenience init(view: UIView) {
-        let scale = UIScreen.main.scale
-        view.frame.width
-        GeneralHelper.log("width: \(view.frame.width)\t height: \(view.frame.height)\t scale: \(scale)")
-        UIGraphicsBeginImageContextWithOptions(view.frame.size, true, 00.0)
+        
+        let scale = AspectRatio.HD.short / view.frame.width
+        GeneralHelper.log("width: \(view.frame.width)\t height: \(view.frame.height)\t scale: \(scale) \nwidth: \(view.frame.width * scale)\t height: \(view.frame.height * scale)")
+        
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, true, scale)
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
