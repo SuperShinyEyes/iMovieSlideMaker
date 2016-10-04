@@ -12,7 +12,7 @@ protocol ColorPickerControllerDelegate {
     func setColorPickerDelegate(colorPicker: HSBColorPicker?)
 }
 
-class CustomTabBarController: UITabBarController, HSBColorPickerDelegate, ColorPickerControllerDelegate {
+class CustomTabBarController: UITabBarController, UITabBarControllerDelegate, HSBColorPickerDelegate, ColorPickerControllerDelegate {
     
     var canvasView: CanvasView!
     
@@ -20,9 +20,16 @@ class CustomTabBarController: UITabBarController, HSBColorPickerDelegate, ColorP
         super.viewDidLoad()
         
         
-
+        
         let colorPickerController = loadColorPickerController()
-        viewControllers = [colorPickerController]
+        colorPickerController.tabBarItem = UITabBarItem(title: "colors", image: UIImage(named: "colors"), tag: 0)
+        
+        let uv = UIViewController()
+        uv.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+//        let navController = UINavigationController(rootViewController: colorPickerController)
+//        
+//        navController.tabBarItem.image = UIImage(named: "colors")
+        viewControllers = [colorPickerController, uv]
         loadCanvasView()
         
     }
