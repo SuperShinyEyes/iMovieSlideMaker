@@ -238,6 +238,8 @@ enum AspectRatio {
     case FullHD(CGSize)
     case UHD4K(CGSize)
     
+    
+    /// scale is for the third parameter in UIGraphicsBeginImageContextWithOptions
     var scale: CGFloat {
         get {
             switch self {
@@ -257,7 +259,6 @@ enum AspectRatio {
 extension UIImage {
     convenience init(view: UIView) {
 
-//        let scale = AspectRatio.HD.short / view.frame.width
         let scale = AspectRatio.HD(view.frame.size).scale
         GeneralHelper.log("width: \(view.frame.width)\t height: \(view.frame.height)\t scale: \(scale) \nwidth: \(view.frame.width * scale)\t height: \(view.frame.height * scale)")
         

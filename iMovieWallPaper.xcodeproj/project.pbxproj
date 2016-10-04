@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		591692261DA2ABA8005A158E /* GeneralHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591692251DA2ABA8005A158E /* GeneralHelper.swift */; };
+		591692281DA3B59A005A158E /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591692271DA3B59A005A158E /* CustomTabBarController.swift */; };
 		5930DA2F1DA2A3080060E454 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930DA2E1DA2A3080060E454 /* AppDelegate.swift */; };
 		5930DA311DA2A3080060E454 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930DA301DA2A3080060E454 /* CanvasViewController.swift */; };
 		5930DA341DA2A3080060E454 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5930DA321DA2A3080060E454 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		591692251DA2ABA8005A158E /* GeneralHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeneralHelper.swift; path = CODE/GeneralHelper.swift; sourceTree = "<group>"; };
+		591692271DA3B59A005A158E /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		5930DA2B1DA2A3080060E454 /* iMovieWallPaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMovieWallPaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5930DA2E1DA2A3080060E454 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5930DA301DA2A3080060E454 /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				5930DA5C1DA2A3AC0060E454 /* Supporting Files */,
 				5930DA301DA2A3080060E454 /* CanvasViewController.swift */,
 				591692251DA2ABA8005A158E /* GeneralHelper.swift */,
+				591692271DA3B59A005A158E /* CustomTabBarController.swift */,
 				5930DA351DA2A3080060E454 /* Assets.xcassets */,
 			);
 			path = iMovieWallPaper;
@@ -275,6 +278,7 @@
 			files = (
 				5930DA311DA2A3080060E454 /* CanvasViewController.swift in Sources */,
 				5930DA2F1DA2A3080060E454 /* AppDelegate.swift in Sources */,
+				591692281DA3B59A005A158E /* CustomTabBarController.swift in Sources */,
 				591692261DA2ABA8005A158E /* GeneralHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

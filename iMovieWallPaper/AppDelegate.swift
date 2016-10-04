@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
-        window?.rootViewController = CanvasViewController()
+//        window?.rootViewController = CanvasViewController()
+        window?.rootViewController = CustomTabBarController()
         window?.makeKeyAndVisible()
         
         return true
