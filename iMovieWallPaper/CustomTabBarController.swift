@@ -94,6 +94,13 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate, UI
         }
     }
     
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        GeneralHelper.log("   >>> @shouldReceive")
+        GeneralHelper.log("   >>> \(touch.view)")
+        return touch.view?.bounds.width == view.bounds.width
+//        return true
+    }
+    
 }
 
 extension UIViewController {
