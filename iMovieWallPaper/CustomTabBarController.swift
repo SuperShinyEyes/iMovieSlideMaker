@@ -96,9 +96,22 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate, UI
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         GeneralHelper.log("   >>> @shouldReceive")
-        GeneralHelper.log("   >>> \(touch.view)")
-        return touch.view?.bounds.width == view.bounds.width
-//        return true
+        GeneralHelper.log("   >>> touch.view: \(touch.view)")
+        GeneralHelper.log("   >>> canvasView: \(canvasView)")
+        if gestureRecognizer is UITapGestureRecognizer {
+            let touchPoint = touch.location(in: view)
+            
+//            GeneralHelper.log("   >>> tabBar.bounds.height: \(tabBar.bounds.height)\n touchPoint.y: \(touchPoint.y)\nview.bounds.height: \(view.bounds.height) \t \(touchPoint.y < view.bounds.height - tabBar.bounds.height)\n UIScreen.main.bounds.height: \(UIScreen.main.bounds.height) \(tabBar.isHidden)")
+            
+            if view.bounds.height > UIScreen.main.bounds.height {
+                return true
+            }
+            return touchPoint.y < UIScreen.main.bounds.height - tabBar.bounds.height
+//            return !tabBar.point(inside: touchPoint, with: nil)
+//            return touch.view?.bounds.width == view.bounds.width
+        }
+        
+        return true
     }
     
 }
