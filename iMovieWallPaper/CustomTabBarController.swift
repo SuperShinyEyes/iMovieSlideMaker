@@ -34,14 +34,14 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate, UI
         
         /// Set UITabBarControllerDelegate
         self.delegate = self
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        tap.delegate = self
-        view.addGestureRecognizer(tap)
-        
+        view.subviews.forEach { view in
+            print(">>>>  \(view)\n")
+            print(">>>> \(view.gestureRecognizers)")
+        }
+        GeneralHelper.log(">>>>>>>>>>>>>>>>\n   \(view.gestureRecognizers)")
     }
     
-    func tapped(sender: AnyObject) {
+    func tapped(sender: UITapGestureRecognizer) {
         setTabBarVisible(visible: !tabBarIsVisible(), animated: true)
     }
 
@@ -53,19 +53,18 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate, UI
     fileprivate func loadColorPickerController() -> ColorPickerController {
         let colorPickerController = ColorPickerController()
         colorPickerController.delegate = self
-//        if let cp = colorPickerController.colorPicker {
-//            cp.delegate = self
-//            print("SUCCESS")
-//        } else {
-//            GeneralHelper.log("   >>> FAIL")
-//        }
         return colorPickerController
     }
     
     fileprivate func loadCanvasView() {
-        canvasView = CanvasView(frame: view.bounds)
+        canvasView = CanvasView(frame: view.bounds, gestureDelegate: self)
         canvasView.backgroundColor = UIColor.black
         view.addSubview(canvasView!)
+//        GeneralHelper.log("Is canvasView in subviews \(view.subviews.contains(canvasView))")
+//        view.subviews.forEach { view in
+//            print(">>>>  \(view)\n")
+//        }
+//        print("")
         view.sendSubview(toBack: canvasView)
     }
     

@@ -11,7 +11,7 @@ import UIKit
 class CanvasView: UIView {
     
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, gestureDelegate: CustomTabBarController) {
         let HDRatio: CGFloat = 16/9
         var HDframe: CGRect
         if 1080.0 / frame.width * frame.height > 1920.0 {
@@ -23,10 +23,13 @@ class CanvasView: UIView {
         }
         
         super.init(frame: HDframe)
-        //        super.init(frame: frame)
+        
+        let tap = UITapGestureRecognizer(target: gestureDelegate, action: #selector(gestureDelegate.tapped))
+        self.addGestureRecognizer(tap)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
+

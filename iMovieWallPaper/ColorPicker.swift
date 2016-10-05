@@ -25,6 +25,21 @@ class HSBColorPicker : UIView {
         }
     }
     
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if self.point(inside: point, with: event) {
+            return self
+        } else {
+            return delegate?.canvasView
+        }
+    }
+    
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        print("touch: \(point.x), \(point.y)")
+        print("\(frame.minX), \(frame.maxX), \(frame.minY), \(frame.maxY)")
+        print(point.x > bounds.minX && point.x < bounds.maxX && point.y > bounds.minY && point.y < bounds.maxY)
+        return point.x > bounds.minX && point.x < bounds.maxX && point.y > bounds.minY && point.y < bounds.maxY
+    }
+    
     fileprivate func initialize() {
         GeneralHelper.log("   HSBColorPicker.initialize()")
         self.clipsToBounds = true
