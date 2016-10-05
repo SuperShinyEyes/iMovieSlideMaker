@@ -31,6 +31,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate, HS
 //        navController.tabBarItem.image = UIImage(named: "colors")
         viewControllers = [colorPickerController, uv]
         loadCanvasView()
+        self.delegate = self
         
     }
     
@@ -73,5 +74,43 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate, HS
         //        colorPicker!.removeFromSuperview()
         GeneralHelper.log("change color")
         canvasView.backgroundColor = color
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        GeneralHelper.log("Selected: \(selectedIndex)")
+        if selectedIndex == 1 {
+            takeScreenShot(view: canvasView)
+        }
+    }
+    
+}
+
+extension UIViewController {
+    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer, uvc: UIViewController) {
+        if let error = error {
+            // we got back an error!
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
+    }
+    
+    func takeScreenShot(view: UIView) {
+        let screenShot = UIImage(view: view)
+        //        let data = UIImagePNGRepresentation(screenShot)
+        //        let documentsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        
+        UIImageWriteToSavedPhotosAlbum(screenShot, self, #selector(image), nil)
+        //        let writePath = NSURL(fileURLWithPath: documentsDir).appendingPathComponent("myimage.png")
+        //        do {
+        //            try data!.write(to: writePath!, options: .atomic)
+        //        } catch let error as NSError {
+        //            GeneralHelper.log(error.localizedDescription)
+        //        }
+        
     }
 }

@@ -15,6 +15,7 @@ struct GeneralHelper {
         Swift.print("\((filename as NSString).lastPathComponent):\(line) \(function):\r\(message)")
     }
     //    #endif
+    
 }
 
 enum AspectRatio {

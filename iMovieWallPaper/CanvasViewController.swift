@@ -85,33 +85,33 @@ class ColorPickerController: UIViewController, HSBColorPickerDelegate {
         canvasView!.backgroundColor = color
     }
     
-    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            // we got back an error!
-            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            present(ac, animated: true)
-        } else {
-            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            present(ac, animated: true)
-        }
-    }
-    
-    func takeScreenShot() {
-        let screenShot = UIImage(view: canvasView!)
-//        let data = UIImagePNGRepresentation(screenShot)
-//        let documentsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        
-        UIImageWriteToSavedPhotosAlbum(screenShot, self, #selector(image), nil)
-//        let writePath = NSURL(fileURLWithPath: documentsDir).appendingPathComponent("myimage.png")
-//        do {
-//            try data!.write(to: writePath!, options: .atomic)
-//        } catch let error as NSError {
-//            GeneralHelper.log(error.localizedDescription)
+//    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+//        if let error = error {
+//            // we got back an error!
+//            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+//            ac.addAction(UIAlertAction(title: "OK", style: .default))
+//            present(ac, animated: true)
+//        } else {
+//            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+//            ac.addAction(UIAlertAction(title: "OK", style: .default))
+//            present(ac, animated: true)
 //        }
-
-    }
+//    }
+//    
+//    func takeScreenShot() {
+//        let screenShot = UIImage(view: canvasView!)
+////        let data = UIImagePNGRepresentation(screenShot)
+////        let documentsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+//        
+//        UIImageWriteToSavedPhotosAlbum(screenShot, self, #selector(image), nil)
+////        let writePath = NSURL(fileURLWithPath: documentsDir).appendingPathComponent("myimage.png")
+////        do {
+////            try data!.write(to: writePath!, options: .atomic)
+////        } catch let error as NSError {
+////            GeneralHelper.log(error.localizedDescription)
+////        }
+//
+//    }
 }
 
 
