@@ -12,42 +12,31 @@ protocol ColorPickerControllerDelegate {
     func setColorPickerDelegate(colorPicker: HSBColorPicker?)
 }
 
-class CustomTabBarController: UITabBarController, UITabBarControllerDelegate, UIGestureRecognizerDelegate, HSBColorPickerDelegate, ColorPickerControllerDelegate {
+class CustomTabBarController: UITabBarController, UITabBarControllerDelegate,HSBColorPickerDelegate, ColorPickerControllerDelegate {
     
     var canvasView: CanvasView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /// Load UIBarItems
         
-        
+        /// 0. Color Picker
         let colorPickerController = loadColorPickerController()
         colorPickerController.tabBarItem = UITabBarItem(title: "colors", image: UIImage(named: "colors"), tag: 0)
         
+        /// 1. Save Button
         let uv = UIViewController()
         uv.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
-//        let navController = UINavigationController(rootViewController: colorPickerController)
-//        
-//        navController.tabBarItem.image = UIImage(named: "colors")
         viewControllers = [colorPickerController, uv]
-        loadCanvasView()
         
-        /// Set UITabBarControllerDelegate
-        self.delegate = self
-        view.subviews.forEach { view in
-            print(">>>>  \(view)\n")
-            print(">>>> \(view.gestureRecognizers)")
-        }
-        GeneralHelper.log(">>>>>>>>>>>>>>>>\n   \(view.gestureRecognizers)")
+        /// Canvas which reflects the color
+        loadCanvasView()
+        print("view.autoresizesSubviews: \(view.autoresizesSubviews)")
     }
     
     func tapped(sender: UITapGestureRecognizer) {
         setTabBarVisible(visible: !tabBarIsVisible(), animated: true)
-    }
-
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
     }
     
     fileprivate func loadColorPickerController() -> ColorPickerController {
@@ -60,11 +49,6 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate, UI
         canvasView = CanvasView(frame: view.bounds, gestureDelegate: self)
         canvasView.backgroundColor = UIColor.black
         view.addSubview(canvasView!)
-//        GeneralHelper.log("Is canvasView in subviews \(view.subviews.contains(canvasView))")
-//        view.subviews.forEach { view in
-//            print(">>>>  \(view)\n")
-//        }
-//        print("")
         view.sendSubview(toBack: canvasView)
     }
     
@@ -75,13 +59,9 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate, UI
         } else {
             GeneralHelper.log("   >>> FAIL")
         }
-        
-//        colorPicker.delegate = self
     }
     
     func HSBColorColorPickerTouched(sender:HSBColorPicker, color:UIColor, point:CGPoint, state:UIGestureRecognizerState) {
-        //        self.view.backgroundColor = color
-        //        colorPicker!.removeFromSuperview()
         GeneralHelper.log("change color")
         canvasView.backgroundColor = color
     }
@@ -90,27 +70,8 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate, UI
         GeneralHelper.log("Selected: \(selectedIndex)")
         if selectedIndex == 1 {
             takeScreenShot(view: canvasView)
-        }
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        GeneralHelper.log("   >>> @shouldReceive")
-        GeneralHelper.log("   >>> touch.view: \(touch.view)")
-        GeneralHelper.log("   >>> canvasView: \(canvasView)")
-        if gestureRecognizer is UITapGestureRecognizer {
-            let touchPoint = touch.location(in: view)
             
-//            GeneralHelper.log("   >>> tabBar.bounds.height: \(tabBar.bounds.height)\n touchPoint.y: \(touchPoint.y)\nview.bounds.height: \(view.bounds.height) \t \(touchPoint.y < view.bounds.height - tabBar.bounds.height)\n UIScreen.main.bounds.height: \(UIScreen.main.bounds.height) \(tabBar.isHidden)")
-            
-            if view.bounds.height > UIScreen.main.bounds.height {
-                return true
-            }
-            return touchPoint.y < UIScreen.main.bounds.height - tabBar.bounds.height
-//            return !tabBar.point(inside: touchPoint, with: nil)
-//            return touch.view?.bounds.width == view.bounds.width
         }
-        
-        return true
     }
     
 }

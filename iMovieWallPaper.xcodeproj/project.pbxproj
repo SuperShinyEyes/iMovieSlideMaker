@@ -11,8 +11,9 @@
 		591692281DA3B59A005A158E /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591692271DA3B59A005A158E /* CustomTabBarController.swift */; };
 		5916922A1DA3B8DF005A158E /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591692291DA3B8DF005A158E /* ColorPicker.swift */; };
 		5916922C1DA3B936005A158E /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5916922B1DA3B936005A158E /* CanvasView.swift */; };
+		591835CE1DA5833900628B9E /* Obsolete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591835CD1DA5833900628B9E /* Obsolete.swift */; };
 		5930DA2F1DA2A3080060E454 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930DA2E1DA2A3080060E454 /* AppDelegate.swift */; };
-		5930DA311DA2A3080060E454 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930DA301DA2A3080060E454 /* CanvasViewController.swift */; };
+		5930DA311DA2A3080060E454 /* ColorPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930DA301DA2A3080060E454 /* ColorPickerController.swift */; };
 		5930DA341DA2A3080060E454 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5930DA321DA2A3080060E454 /* Main.storyboard */; };
 		5930DA361DA2A3080060E454 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5930DA351DA2A3080060E454 /* Assets.xcassets */; };
 		5930DA391DA2A3080060E454 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5930DA371DA2A3080060E454 /* LaunchScreen.storyboard */; };
@@ -42,9 +43,10 @@
 		591692271DA3B59A005A158E /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		591692291DA3B8DF005A158E /* ColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		5916922B1DA3B936005A158E /* CanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		591835CD1DA5833900628B9E /* Obsolete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Obsolete.swift; path = CODE/Obsolete.swift; sourceTree = "<group>"; };
 		5930DA2B1DA2A3080060E454 /* iMovieWallPaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMovieWallPaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5930DA2E1DA2A3080060E454 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5930DA301DA2A3080060E454 /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
+		5930DA301DA2A3080060E454 /* ColorPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerController.swift; sourceTree = "<group>"; };
 		5930DA331DA2A3080060E454 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5930DA351DA2A3080060E454 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5930DA381DA2A3080060E454 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -106,7 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				5930DA5C1DA2A3AC0060E454 /* Supporting Files */,
-				5930DA301DA2A3080060E454 /* CanvasViewController.swift */,
+				5930DA301DA2A3080060E454 /* ColorPickerController.swift */,
 				5916922B1DA3B936005A158E /* CanvasView.swift */,
 				591692291DA3B8DF005A158E /* ColorPicker.swift */,
 				591692251DA2ABA8005A158E /* GeneralHelper.swift */,
@@ -141,6 +143,7 @@
 				5930DA321DA2A3080060E454 /* Main.storyboard */,
 				5930DA371DA2A3080060E454 /* LaunchScreen.storyboard */,
 				5930DA3A1DA2A3080060E454 /* Info.plist */,
+				591835CD1DA5833900628B9E /* Obsolete.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -282,11 +285,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5930DA311DA2A3080060E454 /* CanvasViewController.swift in Sources */,
+				5930DA311DA2A3080060E454 /* ColorPickerController.swift in Sources */,
 				5930DA2F1DA2A3080060E454 /* AppDelegate.swift in Sources */,
 				5916922C1DA3B936005A158E /* CanvasView.swift in Sources */,
 				5916922A1DA3B8DF005A158E /* ColorPicker.swift in Sources */,
 				591692281DA3B59A005A158E /* CustomTabBarController.swift in Sources */,
+				591835CE1DA5833900628B9E /* Obsolete.swift in Sources */,
 				591692261DA2ABA8005A158E /* GeneralHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

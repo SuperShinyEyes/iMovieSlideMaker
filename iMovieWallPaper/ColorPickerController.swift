@@ -30,30 +30,12 @@ class ColorPickerController: UIViewController {
     func loadColorPicker() {
         let width = view.bounds.width * 0.6
         let height = view.bounds.height * 0.6
-        
         let frame = CGRect(origin:  CGPoint(x: (view.bounds.width - width) / 2, y: (view.bounds.height - height) / 2),
                size: CGSize(width: width, height: height))
         
         colorPicker = HSBColorPicker(frame: frame)
-        
-        if let colorPicker = colorPicker {
-            view.addSubview(colorPicker)
-            print("SUCCESS")
-        } else {
-            print(">>> FAIL")
-        }
-    }
-    
-    func loadButton() {
-        let width = view.bounds.width * 0.3
-        let height = view.bounds.height * 0.1
-        let frame = CGRect(origin:  CGPoint(x: (view.bounds.width - width) / 2, y: view.bounds.height - height * 2),
-                           size: CGSize(width: width, height: height))
-        let button = UIButton(frame: frame)
-        button.setTitle("Save", for: .normal)
-        button.addTarget(self, action: #selector(takeScreenShot), for: .touchUpInside)
-        button.backgroundColor = UIColor.blue
-        view.addSubview(button)
+        view.addSubview(colorPicker!)
+
     }
 
 }
