@@ -23,7 +23,7 @@ class ColorPickerController: UIViewController, HSBColorPickerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
 //        loadCanvasView()
         loadColorPicker()
-        loadButton()
+//        loadButton()
         delegate?.setColorPickerDelegate(colorPicker: colorPicker)
     }
     
